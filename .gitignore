@@ -1,0 +1,11 @@
+/.idea
+
+/app/cache
+
+/app/logs
+/vendor
+
+/bin
+/composer.phar
+/composer.lock
+/.travis.yml
