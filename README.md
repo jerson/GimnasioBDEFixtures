@@ -1,4 +1,4 @@
-Proyecto  GimnasioBDE
-========================
+Fixtures  GimnasioBDE
+=====================
 
-Proyecto Para Probar la Base de Datos de GimnasioBDE
+Proyecto Para Poblar la Base de Datos de GimnasioBDE con datos de prueba
