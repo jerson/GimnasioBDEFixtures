@@ -40,34 +40,40 @@ class LoadMembresiaData extends AbstractFixture implements OrderedFixtureInterfa
         $fecha_final->setTimestamp(strtotime('01/01/2012'));
 
         $diferencia_timestamp = $fecha_final->getTimestamp() - $fecha_inicial->getTimestamp();
-        $maximo_membresias = 30;
+
 
         $plazos = array(
             array(
                 'tiempo' => 60 * 60 * 24 * 30 * 1,
                 'precio' => 30,
                 'dias' => 30,
+                'time' => 'this',
             ),
             array(
                 'tiempo' => 60 * 60 * 24 * 30 * 2,
                 'precio' => 50,
                 'dias' => 60,
+                'time' => '+1',
             ),
             array(
                 'tiempo' => 60 * 60 * 24 * 30 * 3,
                 'precio' => 75,
                 'dias' => 90,
+                'time' => '+2',
             ),
             array(
                 'tiempo' => 60 * 60 * 24 * 30 * 6,
                 'precio' => 120,
                 'dias' => 180,
+                'time' => '+5',
             )
         );
-
+        $maximo_membresias = 0;
         foreach ($clientes as $cliente) {
 
-            $timestamp = $fecha_inicial->getTimestamp() + rand(0, $diferencia_timestamp / $maximo_membresias);
+            $maximo_membresias = rand(1,30);
+
+            $timestamp = $fecha_inicial->getTimestamp() + rand(0, $diferencia_timestamp );
 
 
             $fecha_membresia = new \DateTime();
@@ -86,9 +92,14 @@ class LoadMembresiaData extends AbstractFixture implements OrderedFixtureInterfa
                 $membresia->setIdcliente($cliente);
                 $membresia->setAnular(rand(0, 100) == 0 ? true : false);
 
-                $membresia->setFecha($fecha_membresia);
+                $membresia->setFecha((new \DateTime())->setTimestamp($fecha_membresia->getTimestamp()));
 
-                $fecha_inicio = (new \DateTime())->setTimestamp(strtotime('next Monday ' . $fecha_membresia->format('Y-m-d')));
+                $fecha_inicio = (new \DateTime())->setTimestamp($membresia->getFecha()->getTimestamp() + 60 * 60 * 24 * rand(0,7));
+                if(rand(0,1)==0){
+                    $fecha_inicio = (new \DateTime())->setTimestamp($membresia->getFecha()->getTimestamp())->modify('next monday');
+
+                }
+
                 $fecha_vencimiento = (new \DateTime())->setTimestamp($fecha_inicio->getTimestamp() + $plazo['tiempo']);
 
                 $total_recibo = $plazo['precio'];
@@ -109,12 +120,12 @@ class LoadMembresiaData extends AbstractFixture implements OrderedFixtureInterfa
                 $maximo_asistencias = $plazo['dias'];
                 $total_asistencias = rand(5, $maximo_asistencias);
 
-                $fecha_asistencia = $fecha_inicio;
+                $fecha_asistencia = (new \DateTime())->setTimestamp($fecha_inicio->getTimestamp());
 
 
                 for ($j = 0; $j < $total_asistencias; $j++) {
 
-                    if (rand(0, 5) == 0) {
+                    if (rand(0, 3) == 0) {
 
                         continue;
 
@@ -150,13 +161,13 @@ class LoadMembresiaData extends AbstractFixture implements OrderedFixtureInterfa
 
                     }
 
-                    $fecha_asistencia->setTimestamp($fecha_asistencia->getTimestamp() + 60 * 60 * 24);
+                    $fecha_asistencia->setTimestamp($fecha_asistencia->getTimestamp() + 60 * 60 * 24 * rand(1,15));
 
                 }
 
 
                 $manager->persist($membresia);
-                $timestamp += rand(0, ($fecha_final->getTimestamp() - $timestamp) / $maximo_membresias) + $plazo['tiempo'];
+                $timestamp += rand(0, ($fecha_final->getTimestamp() - $timestamp)) + $plazo['tiempo'];
             }
 
         }

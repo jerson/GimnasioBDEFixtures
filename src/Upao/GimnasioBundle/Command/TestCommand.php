@@ -35,45 +35,14 @@ class TestCommand extends ContainerAwareCommand
     {
 
         $texto = Plugin\Utils::getInstance()->numerify('###.###');
-        $output->writeln(Faker::name()->name());
+        $output->writeln(Faker::name()->firstName());
+        $output->writeln(Faker::name()->surname());
         $output->writeln($texto);
 
-        $lexer = new  Lexer('(0[4-7]{2}(-)[4-9]{3}(-|)[0-9]{3}|9[4-7]{2}[0-9]{3}[0-9]{3})');
-        $gen = new MersenneRandom(1452);
-        $result = '';
-
-        $parser = new Parser($lexer, new Scope(), new Scope());
-        $parser->parse()->getResult()->generate($result, $gen);
+       $fecha = (new \DateTime())->setTimestamp(time())->modify('next monday');
 
 
-        $output->writeln($result);
-
-        $result = Plugin\Utils::getInstance()->lexer('(0[4-7]{2}(-)[4-9]{3}(-|)[0-9]{3}|9[4-7]{2}[0-9]{3}[0-9]{3})',1452);
-
-        $output->writeln($result);
-
-
-        $result = Faker::phoneNumber()->phone();
-
-        $output->writeln($result);
-
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
-        $conn = $this->getContainer()->get('database_connection');
-
-        $id_curso  = $conn->fetchColumn('SELECT IdCurso FROM Curso ORDER BY NEWID()',array(),0);
-        $id_instructor  = $conn->fetchColumn('SELECT IdInstructor FROM Instructor ORDER BY NEWID()',array(),0);
-
-
-        $curso = $em->getRepository('UpaoGimnasioBundle:Curso')->find($id_curso);
-        $instructor = $em->getRepository('UpaoGimnasioBundle:Instructor')->find($id_instructor);
-
-        /*$curso = $em->getRepository('UpaoGimnasioBundle:Curso')->findOneBy(
-            array(),
-            array('' => 'NEWID()')
-        );*/
-
-        print_r($curso);
-        print_r($instructor);
+        $output->writeln($fecha->format('c'));
 
     }
 }

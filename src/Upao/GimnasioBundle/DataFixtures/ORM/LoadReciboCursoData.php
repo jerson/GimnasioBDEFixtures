@@ -40,36 +40,34 @@ class LoadReciboCursoData extends AbstractFixture implements OrderedFixtureInter
         $fecha_final->setTimestamp(strtotime('01/01/2012'));
 
         $diferencia_timestamp = $fecha_final->getTimestamp() - $fecha_inicial->getTimestamp();
-        $maximo_membresias = 15;
 
         $plazos = array(
             array(
                 'tiempo' => 60 * 60 * 24 * 30 * 1,
                 'precio' => 30,
                 'dias' => 30,
+                'time' => 'this',
             ),
             array(
                 'tiempo' => 60 * 60 * 24 * 30 * 2,
                 'precio' => 50,
                 'dias' => 60,
+                'time' => '+1',
             ),
             array(
                 'tiempo' => 60 * 60 * 24 * 30 * 3,
                 'precio' => 75,
                 'dias' => 90,
-            ),
-            array(
-                'tiempo' => 60 * 60 * 24 * 30 * 6,
-                'precio' => 120,
-                'dias' => 180,
+                'time' => '+2',
             )
         );
 
         $cursos = $em->getRepository('UpaoGimnasioBundle:Curso')->findAll();
-
+        $maximo_membresias=0;
         foreach ($clientes as $cliente) {
+            $maximo_membresias = rand(1,15);
 
-            $timestamp = $fecha_inicial->getTimestamp() + rand(0, $diferencia_timestamp / $maximo_membresias);
+            $timestamp = $fecha_inicial->getTimestamp() + rand(0, $diferencia_timestamp);
 
 
             $fecha_membresia = new \DateTime();
@@ -88,10 +86,12 @@ class LoadReciboCursoData extends AbstractFixture implements OrderedFixtureInter
                 $recibo_curso->setIdcliente($cliente);
                 $recibo_curso->setAnular(rand(0, 100) == 0 ? true : false);
 
-                $recibo_curso->setFecha($fecha_membresia);
 
-                $fecha_inicio = (new \DateTime())->setTimestamp(strtotime('next Monday ' . $fecha_membresia->format('Y-m-d')));
-                $fecha_vencimiento = (new \DateTime())->setTimestamp($fecha_inicio->getTimestamp() + $plazo['tiempo']);
+                $timestamp_recibo = $fecha_membresia->getTimestamp();
+                $recibo_curso->setFecha((new \DateTime())->setTimestamp($timestamp_recibo));
+
+                $fecha_inicio = (new \DateTime())->setTimestamp($timestamp_recibo)->modify('first day of next month');
+                $fecha_vencimiento = (new \DateTime())->setTimestamp($fecha_inicio->getTimestamp())->modify('last day of '.$plazo['time'].' month');
 
                 $total_recibo = $plazo['precio'];
                 $descuento = $total_recibo * 0.1;
@@ -122,7 +122,7 @@ class LoadReciboCursoData extends AbstractFixture implements OrderedFixtureInter
                 $maximo_asistencias = $plazo['dias'];
                 $total_asistencias = rand(5, $maximo_asistencias);
 
-                $fecha_asistencia = $fecha_inicio;
+                $fecha_asistencia = (new \DateTime())->setTimestamp($fecha_inicio->getTimestamp());
 
 
                 for ($j = 0; $j < $total_asistencias; $j++) {
@@ -164,13 +164,13 @@ class LoadReciboCursoData extends AbstractFixture implements OrderedFixtureInter
 
                     }
 
-                    $fecha_asistencia->setTimestamp($fecha_asistencia->getTimestamp() + 60 * 60 * 24);
+                    $fecha_asistencia->setTimestamp($fecha_asistencia->getTimestamp() + 60 * 60 * 24 * rand(1,4));
 
                 }
 
 
                 $manager->persist($recibo_curso);
-                $timestamp += rand(0, ($fecha_final->getTimestamp() - $timestamp) / $maximo_membresias) + $plazo['tiempo'];
+                $timestamp += rand(0, ($fecha_final->getTimestamp() - $timestamp)) + $plazo['tiempo'];
             }
 
         }

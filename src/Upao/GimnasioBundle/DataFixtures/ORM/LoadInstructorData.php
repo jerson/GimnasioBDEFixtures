@@ -45,12 +45,12 @@ class LoadInstructorData extends AbstractFixture implements OrderedFixtureInterf
             $instructor->setNombresinst($this->faker_name->firstName());
             $apellidos = $this->faker_name->surname();
             $username = $apellidos;
-            $username .= rand(0, 1) == 0 ? ' ' . rand(1, 100) : '_' . rand(1, 100);
+            $username .= rand(0, 1) == 0 ?  rand(1, 100) : '_' . rand(1, 100);
 
             $instructor->setApellidosinst($apellidos);
-            $instructor->setDireccioninst($this->faker_address->streetAddress());
-            $instructor->setEmailinst($this->getUniqueEmail($username));
-            $instructor->setDniinst($this->getUniqueDni($i));
+            $instructor->setDireccioninst($this->faker_address->streetFull());
+            $instructor->setEmailinst($this->faker_internet->freeEmail($username));
+            $instructor->setDniinst($this->faker_identification->dni($i));
 
             if(rand(0,9)<8){
                 $instructor->setCelularinst($this->faker_number->mobile($i));

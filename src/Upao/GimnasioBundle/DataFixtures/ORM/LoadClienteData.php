@@ -40,13 +40,15 @@ class LoadClienteData extends AbstractFixture implements OrderedFixtureInterface
         $this->faker_identification = Faker::identification();
         $this->faker_internet = Faker::internet();
 
-        for ($i = 0, $total = rand(50, 100); $i < $total; $i++) {
+        for ($i = 0, $total = rand(800, 1200); $i < $total; $i++) {
+
+            $street = $this->faker_address->streetArray();
 
             $direccion = new Entity\Direccion();
-            $direccion->setCalle($this->faker_address->streetName());
-            $direccion->setNumero($this->faker_address->postCode());
-            $direccion->setReferencia($this->faker_address->streetSuffix());
-            $direccion->setTipo($this->faker_address->streetSuffix());
+            $direccion->setCalle($street['name']);
+            $direccion->setNumero($this->faker_address->streetNumber());
+            $direccion->setReferencia('');
+            $direccion->setTipo($street['type']);
             $manager->persist($direccion);
 
 
@@ -59,7 +61,7 @@ class LoadClienteData extends AbstractFixture implements OrderedFixtureInterface
             $cliente->setApellidoscli($apellidos);
 
             $username = rand(0, 1) == 0 ? $apellidos : $nombres;
-            $username .= rand(0, 1) == 0 ? ' ' . rand(1, 100) : '_' . rand(1, 100);
+            $username .= rand(0, 1) == 0 ? rand(1, 100) : '_' . rand(1, 100);
 
             if(rand(0,9)<8){
                 $cliente->setCelularcli($this->faker_number->mobile($i));
@@ -73,25 +75,22 @@ class LoadClienteData extends AbstractFixture implements OrderedFixtureInterface
             }
 
             $cliente->setEsestudiante(rand(0, 30) == 0 ? true : false);
-            $cliente->setClavecli(Utils::getInstance()->lexer('[A-Za-z0-9]{6,20}'));
+            $cliente->setClavecli(Utils::getInstance()->lexer('[A-Za-z0-9]{6,10}'));
             $cliente->setUsuariocli($this->faker_internet->userName($username));
-
             $cliente->setEmailcli($this->faker_internet->freeEmail($username));
 
             if (rand(0, 9) == 0) {
                 $cliente->setRuccli($this->faker_identification->ruc($i));
             } else {
-
                 $cliente->setDnicli($this->faker_identification->dni($i));
             }
-
 
             $manager->persist($cliente);
 
         }
 
-        $manager->flush();
 
+        $manager->flush();
     }
 
     public function getUniqueEmail($username)
