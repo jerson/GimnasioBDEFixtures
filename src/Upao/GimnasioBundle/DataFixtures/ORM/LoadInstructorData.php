@@ -67,9 +67,9 @@ class LoadInstructorData extends AbstractFixture implements OrderedFixtureInterf
 
             $manager->persist($instructor);
 
-            $manager->flush();
         }
 
+        $manager->flush();
 
     }
 

@@ -41,11 +41,12 @@ class LoadMedidaData extends AbstractFixture implements OrderedFixtureInterface,
         $fecha_final->setTimestamp(strtotime('01/01/2012'));
 
         $diferencia_timestamp = $fecha_final->getTimestamp() - $fecha_inicial->getTimestamp();
-        $maximo_medidas = 20;
+        $maximo_medidas = 0;
 
         foreach ($clientes as $cliente) {
+            $maximo_medidas = rand(1,20);
 
-            $timestamp = $fecha_inicial->getTimestamp() + rand(0,$diferencia_timestamp/($maximo_medidas/10));
+            $timestamp = $fecha_inicial->getTimestamp() + rand(0,$diferencia_timestamp);
 
             $estatura_media = rand(150,189) /100;
             $peso_medio = rand(50,120) /100;
@@ -84,11 +85,13 @@ class LoadMedidaData extends AbstractFixture implements OrderedFixtureInterface,
 
 
                 $manager->persist($medida);
-                $manager->flush();
-                $timestamp+= rand(0,($fecha_final->getTimestamp() - $timestamp)/($maximo_medidas/10));
+                $timestamp+= rand(0,($fecha_final->getTimestamp() - $timestamp));
             }
 
         }
+
+
+        $manager->flush();
 
 
 
