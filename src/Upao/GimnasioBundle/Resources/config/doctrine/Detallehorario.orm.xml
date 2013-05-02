@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Upao\GimnasioBundle\Entity\Detallehorario" table="DetalleHorario">
+    <id name="iddetallehorario" type="decimal" column="IdDetalleHorario">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="idsala" target-entity="Sala">
+      <join-columns>
+        <join-column name="IdSala" referenced-column-name="IdSala"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idinstructor" target-entity="Instructor">
+      <join-columns>
+        <join-column name="IdInstructor" referenced-column-name="IdInstructor"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idhorario" target-entity="Horario">
+      <join-columns>
+        <join-column name="IdHorario" referenced-column-name="IdHorario"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idcurso" target-entity="Curso">
+      <join-columns>
+        <join-column name="IdCurso" referenced-column-name="IdCurso"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

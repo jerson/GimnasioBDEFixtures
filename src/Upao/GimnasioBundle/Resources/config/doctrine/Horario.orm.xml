@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Upao\GimnasioBundle\Entity\Horario" table="Horario">
+    <id name="idhorario" type="decimal" column="IdHorario">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="diadethorario" type="string" column="DiaDetHorario" length="2" nullable="false"/>
+    <field name="horainidethorario" type="time" column="HoraIniDetHorario" nullable="false"/>
+    <field name="horafindethorario" type="time" column="HoraFinDetHorario" nullable="false"/>
+  </entity>
+</doctrine-mapping>

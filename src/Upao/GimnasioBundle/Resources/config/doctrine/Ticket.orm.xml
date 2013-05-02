@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Upao\GimnasioBundle\Entity\Ticket" table="Ticket">
+    <id name="numticket" type="decimal" column="NumTicket">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fechaticket" type="datetime" column="FechaTicket" nullable="false"/>
+    <field name="totalticket" type="integer" column="TotalTicket" nullable="false"/>
+    <field name="anularticket" type="string" column="AnularTicket" length="10" nullable="true"/>
+    <many-to-many field="idproducto" target-entity="Producto" inversed-by="numticket">
+      <join-table name="detticket">
+        <join-columns>
+          <join-column name="NumTicket" referenced-column-name="NumTicket"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="IdProducto" referenced-column-name="IdProducto"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

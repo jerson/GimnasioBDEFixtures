@@ -1,0 +1,3 @@
+upao_gimnasio_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: UpaoGimnasioBundle:Default:index }

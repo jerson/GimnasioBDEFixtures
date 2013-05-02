@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Upao\GimnasioBundle\Entity\Comprobantecompra" table="ComprobanteCompra">
+    <id name="numcomcomp" type="decimal" column="NumComComp">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fechacomcomp" type="datetime" column="FechaComComp" nullable="false"/>
+    <field name="totalcomcomp" type="integer" column="TotalComComp" nullable="false"/>
+    <many-to-one field="idproveedor" target-entity="Proveedor">
+      <join-columns>
+        <join-column name="IdProveedor" referenced-column-name="IdProveedor"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="idproducto" target-entity="Producto" inversed-by="numcomcomp">
+      <join-table name="detcomprobantecompra">
+        <join-columns>
+          <join-column name="NumComComp" referenced-column-name="NumComComp"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="IdProducto" referenced-column-name="IdProducto"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

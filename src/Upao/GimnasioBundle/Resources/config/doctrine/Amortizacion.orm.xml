@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Upao\GimnasioBundle\Entity\Amortizacion" table="Amortizacion">
+    <id name="idamort" type="decimal" column="IdAmort">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fechaamort" type="datetime" column="FechaAmort" nullable="false"/>
+    <field name="montotalamort" type="integer" column="MonTotalAmort" nullable="false"/>
+    <field name="saldoanterioramort" type="integer" column="SaldoAnteriorAmort" nullable="false"/>
+    <field name="netopagaramort" type="integer" column="NetoPagarAmort" nullable="false"/>
+    <field name="saldopagaramort" type="integer" column="SaldoPagarAmort" nullable="false"/>
+    <many-to-one field="numorcredito" target-entity="Ordencredito">
+      <join-columns>
+        <join-column name="NumOrCredito" referenced-column-name="NumOrCredito"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

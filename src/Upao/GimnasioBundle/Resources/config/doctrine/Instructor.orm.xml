@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Upao\GimnasioBundle\Entity\Instructor" table="Instructor">
+    <id name="idinstructor" type="decimal" column="IdInstructor">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombresinst" type="string" column="NombresInst" length="50" nullable="false"/>
+    <field name="apellidosinst" type="string" column="ApellidosInst" length="50" nullable="false"/>
+    <field name="dniinst" type="string" column="DniInst" length="8" nullable="false"/>
+    <field name="direccioninst" type="string" column="DireccionInst" length="100" nullable="false"/>
+    <field name="telefonoinst" type="string" column="TelefonoInst" length="20" nullable="true"/>
+    <field name="emailinst" type="string" column="EmailInst" length="100" nullable="false"/>
+    <field name="celularinst" type="string" column="CelularInst" length="10" nullable="true"/>
+  </entity>
+</doctrine-mapping>

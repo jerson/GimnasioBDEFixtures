@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Upao\GimnasioBundle\Entity\Producto" table="Producto">
+    <id name="idproducto" type="decimal" column="IdProducto">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombrepro" type="string" column="NombrePro" length="20" nullable="false"/>
+    <field name="preciopro" type="integer" column="PrecioPro" nullable="false"/>
+    <field name="stockpro" type="integer" column="StockPro" nullable="false"/>
+    <field name="tipopro" type="string" column="TipoPro" length="20" nullable="false"/>
+    <many-to-one field="idcategoria" target-entity="Categoria">
+      <join-columns>
+        <join-column name="IdCategoria" referenced-column-name="IdCategoria"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="numticket" target-entity="Ticket" mapped-by="idproducto"/>
+    <many-to-many field="numorcredito" target-entity="Ordencredito" mapped-by="idproducto"/>
+    <many-to-many field="numcomvent" target-entity="Comprobanteventa" mapped-by="idproducto"/>
+    <many-to-many field="numcomcomp" target-entity="Comprobantecompra" mapped-by="idproducto"/>
+  </entity>
+</doctrine-mapping>

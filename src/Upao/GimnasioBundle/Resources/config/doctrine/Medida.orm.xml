@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Upao\GimnasioBundle\Entity\Medida" table="Medida">
+    <id name="idmed" type="decimal" column="IdMed">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fechamed" type="datetime" column="FechaMed" nullable="false"/>
+    <field name="estaturamed" type="decimal" column="EstaturaMed" nullable="false"/>
+    <field name="pesomed" type="decimal" column="PesoMed" nullable="false"/>
+    <field name="brazomed" type="decimal" column="BrazoMed" nullable="false"/>
+    <field name="bustTormed" type="decimal" column="Bust_TorMed" nullable="false"/>
+    <field name="cinturamed" type="decimal" column="CinturaMed" nullable="false"/>
+    <field name="piernamed" type="decimal" column="PiernaMed" nullable="false"/>
+    <field name="caderamed" type="decimal" column="CaderaMed" nullable="false"/>
+    <field name="pantorrillasmed" type="decimal" column="PantorrillasMed" nullable="false"/>
+    <field name="porgrasamed" type="decimal" column="PorGrasaMed" nullable="false"/>
+    <many-to-one field="idcliente" target-entity="Cliente">
+      <join-columns>
+        <join-column name="IdCliente" referenced-column-name="IdCliente"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

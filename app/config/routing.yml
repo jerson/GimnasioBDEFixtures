@@ -1,0 +1,4 @@
+upao_gimnasio:
+    resource: "@UpaoGimnasioBundle/Resources/config/routing.yml"
+    prefix:   /
+

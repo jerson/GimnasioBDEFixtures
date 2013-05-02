@@ -1,0 +1,139 @@
+<?php
+
+namespace Upao\GimnasioBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Direccion
+ */
+class Direccion
+{
+    /**
+     * @var string
+     */
+    private $tipo;
+
+    /**
+     * @var string
+     */
+    private $calle;
+
+    /**
+     * @var string
+     */
+    private $numero;
+
+    /**
+     * @var string
+     */
+    private $referencia;
+
+    /**
+     * @var float
+     */
+    private $iddireccion;
+
+
+    /**
+     * Set tipo
+     *
+     * @param string $tipo
+     * @return Direccion
+     */
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return string 
+     */
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    /**
+     * Set calle
+     *
+     * @param string $calle
+     * @return Direccion
+     */
+    public function setCalle($calle)
+    {
+        $this->calle = $calle;
+    
+        return $this;
+    }
+
+    /**
+     * Get calle
+     *
+     * @return string 
+     */
+    public function getCalle()
+    {
+        return $this->calle;
+    }
+
+    /**
+     * Set numero
+     *
+     * @param string $numero
+     * @return Direccion
+     */
+    public function setNumero($numero)
+    {
+        $this->numero = $numero;
+    
+        return $this;
+    }
+
+    /**
+     * Get numero
+     *
+     * @return string 
+     */
+    public function getNumero()
+    {
+        return $this->numero;
+    }
+
+    /**
+     * Set referencia
+     *
+     * @param string $referencia
+     * @return Direccion
+     */
+    public function setReferencia($referencia)
+    {
+        $this->referencia = $referencia;
+    
+        return $this;
+    }
+
+    /**
+     * Get referencia
+     *
+     * @return string 
+     */
+    public function getReferencia()
+    {
+        return $this->referencia;
+    }
+
+    /**
+     * Get iddireccion
+     *
+     * @return float 
+     */
+    public function getIddireccion()
+    {
+        return $this->iddireccion;
+    }
+}

@@ -1,0 +1,251 @@
+<?php
+
+namespace Upao\GimnasioBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Membresia
+ */
+class Membresia
+{
+    /**
+     * @var \DateTime
+     */
+    private $fecha;
+
+    /**
+     * @var \DateTime
+     */
+    private $fechainicio;
+
+    /**
+     * @var \DateTime
+     */
+    private $fechavencimiento;
+
+    /**
+     * @var integer
+     */
+    private $descuento;
+
+    /**
+     * @var integer
+     */
+    private $totalrecibo;
+
+    /**
+     * @var boolean
+     */
+    private $anular;
+
+    /**
+     * @var string
+     */
+    private $tiporecibo;
+
+    /**
+     * @var float
+     */
+    private $idmembresia;
+
+    /**
+     * @var \Upao\GimnasioBundle\Entity\Cliente
+     */
+    private $idcliente;
+
+
+    /**
+     * Set fecha
+     *
+     * @param \DateTime $fecha
+     * @return Membresia
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+    
+        return $this;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return \DateTime 
+     */
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    /**
+     * Set fechainicio
+     *
+     * @param \DateTime $fechainicio
+     * @return Membresia
+     */
+    public function setFechainicio($fechainicio)
+    {
+        $this->fechainicio = $fechainicio;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechainicio
+     *
+     * @return \DateTime 
+     */
+    public function getFechainicio()
+    {
+        return $this->fechainicio;
+    }
+
+    /**
+     * Set fechavencimiento
+     *
+     * @param \DateTime $fechavencimiento
+     * @return Membresia
+     */
+    public function setFechavencimiento($fechavencimiento)
+    {
+        $this->fechavencimiento = $fechavencimiento;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechavencimiento
+     *
+     * @return \DateTime 
+     */
+    public function getFechavencimiento()
+    {
+        return $this->fechavencimiento;
+    }
+
+    /**
+     * Set descuento
+     *
+     * @param integer $descuento
+     * @return Membresia
+     */
+    public function setDescuento($descuento)
+    {
+        $this->descuento = $descuento;
+    
+        return $this;
+    }
+
+    /**
+     * Get descuento
+     *
+     * @return integer 
+     */
+    public function getDescuento()
+    {
+        return $this->descuento;
+    }
+
+    /**
+     * Set totalrecibo
+     *
+     * @param integer $totalrecibo
+     * @return Membresia
+     */
+    public function setTotalrecibo($totalrecibo)
+    {
+        $this->totalrecibo = $totalrecibo;
+    
+        return $this;
+    }
+
+    /**
+     * Get totalrecibo
+     *
+     * @return integer 
+     */
+    public function getTotalrecibo()
+    {
+        return $this->totalrecibo;
+    }
+
+    /**
+     * Set anular
+     *
+     * @param boolean $anular
+     * @return Membresia
+     */
+    public function setAnular($anular)
+    {
+        $this->anular = $anular;
+    
+        return $this;
+    }
+
+    /**
+     * Get anular
+     *
+     * @return boolean 
+     */
+    public function getAnular()
+    {
+        return $this->anular;
+    }
+
+    /**
+     * Set tiporecibo
+     *
+     * @param string $tiporecibo
+     * @return Membresia
+     */
+    public function setTiporecibo($tiporecibo)
+    {
+        $this->tiporecibo = $tiporecibo;
+    
+        return $this;
+    }
+
+    /**
+     * Get tiporecibo
+     *
+     * @return string 
+     */
+    public function getTiporecibo()
+    {
+        return $this->tiporecibo;
+    }
+
+    /**
+     * Get idmembresia
+     *
+     * @return float 
+     */
+    public function getIdmembresia()
+    {
+        return $this->idmembresia;
+    }
+
+    /**
+     * Set idcliente
+     *
+     * @param \Upao\GimnasioBundle\Entity\Cliente $idcliente
+     * @return Membresia
+     */
+    public function setIdcliente(\Upao\GimnasioBundle\Entity\Cliente $idcliente = null)
+    {
+        $this->idcliente = $idcliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get idcliente
+     *
+     * @return \Upao\GimnasioBundle\Entity\Cliente 
+     */
+    public function getIdcliente()
+    {
+        return $this->idcliente;
+    }
+}

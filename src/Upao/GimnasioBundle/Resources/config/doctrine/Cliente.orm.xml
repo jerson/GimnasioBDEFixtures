@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Upao\GimnasioBundle\Entity\Cliente" table="Cliente">
+    <id name="idcliente" type="decimal" column="IdCliente">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombrescli" type="string" column="NombresCli" length="50" nullable="false"/>
+    <field name="apellidoscli" type="string" column="ApellidosCli" length="50" nullable="false"/>
+    <field name="telefonocli" type="string" column="TelefonoCli" length="20" nullable="true"/>
+    <field name="dnicli" type="string" column="DniCli" length="8" nullable="true"/>
+    <field name="ruccli" type="string" column="RucCli" length="11" nullable="true"/>
+    <field name="emailcli" type="string" column="EmailCli" length="100" nullable="true"/>
+    <field name="usuariocli" type="string" column="UsuarioCli" length="20" nullable="false"/>
+    <field name="clavecli" type="string" column="ClaveCli" length="20" nullable="false"/>
+    <field name="esestudiante" type="boolean" column="esEstudiante" nullable="true"/>
+    <field name="celularcli" type="string" column="CelularCli" length="10" nullable="true"/>
+    <many-to-one field="iddireccion" target-entity="Direccion">
+      <join-columns>
+        <join-column name="IdDireccion" referenced-column-name="IdDireccion"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

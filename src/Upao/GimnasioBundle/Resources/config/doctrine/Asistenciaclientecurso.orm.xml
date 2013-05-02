@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Upao\GimnasioBundle\Entity\Asistenciaclientecurso" table="AsistenciaClienteCurso">
+    <id name="idasistenciaclientecurso" type="decimal" column="IdAsistenciaClienteCurso">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fechaasistencia" type="date" column="FechaAsistencia" nullable="false"/>
+    <many-to-one field="iddetallehorario" target-entity="Detallehorario">
+      <join-columns>
+        <join-column name="IdDetalleHorario" referenced-column-name="IdDetalleHorario"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idcliente" target-entity="Cliente">
+      <join-columns>
+        <join-column name="IdCliente" referenced-column-name="IdCliente"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
