@@ -30,6 +30,7 @@ class LoadMedidaData extends AbstractFixture implements OrderedFixtureInterface,
     public function load(ObjectManager $manager)
     {
 
+        return;
 
         $em = $this->container->get('doctrine')->getEntityManager();
         $clientes = $em->getRepository('UpaoGimnasioBundle:Cliente')->findAll();
